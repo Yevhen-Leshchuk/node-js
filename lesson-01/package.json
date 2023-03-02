@@ -1,0 +1,14 @@
+{
+  "name": "lesson-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yevhen <evg.leschuk@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "calc-js": "^2.0.7"
+  }
+}
