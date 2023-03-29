@@ -6,7 +6,6 @@ const axios = require('axios').default;
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-const PORT = 3000;
 const app = express();
 
 app.get('/weather', validateWeatherRequest, async (req, res, next) => {
