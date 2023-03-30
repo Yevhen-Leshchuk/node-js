@@ -17,7 +17,7 @@ app.get('/weather', validateWeatherRequest, async (req, res, next) => {
   // 6. deploy application to Heroku
 
   const response = await axios.get(
-    `https://https://api.openweathermap.org/data/2.5/weather?lat=${req.query.lat}&lon=${req.query.ln}&appid=${process.env.OPENWEATHER_API_KEY}&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${req.query.lat}&lon=${req.query.ln}&appid=${process.env.OPENWEATHER_API_KEY}&units=metric`
   );
 
   return res.status(200).send(response.data);
@@ -39,5 +39,5 @@ function validateWeatherRequest(req, res, next) {
 }
 
 app.listen(process.env.PORT, () => {
-  console.log('server started listening on port', PORT);
+  console.log('server started listening on port', process.env.PORT);
 });
