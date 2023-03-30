@@ -14,7 +14,7 @@ app.get('/weather', validateWeatherRequest, async (req, res, next) => {
   // 3. add .env file with env vars +
   // 4. send request to OpenWeatherMap +
   // 5. send response to client +
-  // 6. deploy application to Heroku
+  // 6. deploy application to Heroku +
 
   const response = await axios.get(
     `https://api.openweathermap.org/data/2.5/weather?lat=${req.query.lat}&lon=${req.query.ln}&appid=${process.env.OPENWEATHER_API_KEY}&units=metric`
