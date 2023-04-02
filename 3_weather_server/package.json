@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd 3_weather_server && npm i && node server.js"
+    "start": "cd node-jd/3_weather_server && npm i && node server.js"
   },
   "keywords": [],
   "author": "Yevhen <evg.leschuk@gmail.com>",
