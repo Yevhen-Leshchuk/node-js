@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
 const { getConfig } = require('./config');
+const { usersRouter } = require('./resources/users/users.model');
 
 class UsersServer {
   constructor() {
@@ -30,7 +31,9 @@ class UsersServer {
     this.app.use(express.json({ limit: '500kb' }));
   }
 
-  initRoutes() {}
+  initRoutes() {
+    this.app.use('/users', usersRouter);
+  }
 
   initErrorHandling() {
     this.app.use((err, req, res, next) => {
