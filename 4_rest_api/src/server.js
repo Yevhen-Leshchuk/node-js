@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
 const { getConfig } = require('./config');
-const { usersRouter } = require('./resources/users/users.model');
+const { usersRouter } = require('./resources/users/users.controller');
 
 class UsersServer {
   constructor() {
