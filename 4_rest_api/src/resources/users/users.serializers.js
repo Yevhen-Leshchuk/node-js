@@ -4,6 +4,10 @@ function serializeUserResponse(user) {
   };
 }
 
+function serializeUsersListResponse(users) {
+  return { users: users.map(serializeUser) };
+}
+
 function serializeUser(user) {
   return {
     id: user.id,
@@ -13,4 +17,5 @@ function serializeUser(user) {
 }
 
 exports.serializeUserResponse = serializeUserResponse;
+exports.serializeUsersListResponse = serializeUsersListResponse;
 exports.serializeUser = serializeUser;
