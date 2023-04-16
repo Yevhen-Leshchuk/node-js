@@ -30,6 +30,13 @@ class UsersService {
     }
     return user;
   }
+
+  deleteUser(id) {
+    const isDeleted = userModel.removeUserById(id);
+    if (!isDeleted) {
+      throw new NotFound('user not found');
+    }
+  }
 }
 
 exports.usersService = new UsersService();

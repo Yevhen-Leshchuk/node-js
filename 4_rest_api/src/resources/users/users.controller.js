@@ -33,4 +33,11 @@ router.patch('/:id', validate(updateUserSchema), (req, res, next) => {
   res.status(200).send(serializeUserResponse(user));
 });
 
+// 4. D - Delete
+
+router.delete('/:id', (req, res, next) => {
+  usersService.deleteUser(req.params.id, req.body);
+  res.status(204).send();
+});
+
 exports.usersRouter = router;

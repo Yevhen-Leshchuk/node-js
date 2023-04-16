@@ -17,7 +17,7 @@ class userModel {
   }
 
   updateById(id, updateParams) {
-    const userIndex = users.findIndex((user) => user.id === id);
+    const userIndex = this.findIndex(id);
 
     if (userIndex === -1) {
       return null;
@@ -29,6 +29,22 @@ class userModel {
     };
 
     return users[userIndex];
+  }
+
+  removeUserById(id) {
+    const userIndex = this.findIndex(id);
+
+    if (userIndex === -1) {
+      return false;
+    }
+
+    users.splice(userIndex, 1);
+
+    return true;
+  }
+
+  findIndex(id) {
+    return users.findIndex((user) => user.id === id);
   }
 }
 
