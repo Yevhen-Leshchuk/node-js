@@ -5,3 +5,7 @@ exports.createUserSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().required(),
 });
+
+exports.updateUserSchema = Joi.object({
+  username: Joi.string().required(),
+});

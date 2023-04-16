@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { usersService } = require('./users.service');
 const { validate } = require('../../middlewares/validate');
-const { createUserSchema } = require('./users.schemas');
+const { createUserSchema, updateUserSchema } = require('./users.schemas');
 const {
   serializeUserResponse,
   serializeUsersListResponse,
@@ -15,7 +15,7 @@ router.post('/', validate(createUserSchema), (req, res, next) => {
   res.status(201).send(serializeUserResponse(user));
 });
 
-// 2. - Read
+// 2. R - Read
 
 router.get('/', (req, res, next) => {
   const users = usersService.getUsers();
@@ -23,6 +23,13 @@ router.get('/', (req, res, next) => {
 });
 router.get('/:id', (req, res, next) => {
   const user = usersService.getUser(req.params.id);
+  res.status(200).send(serializeUserResponse(user));
+});
+
+// 3. U - Update
+
+router.patch('/:id', validate(updateUserSchema), (req, res, next) => {
+  const user = usersService.updateUser(req.params.id, req.body);
   res.status(200).send(serializeUserResponse(user));
 });
 

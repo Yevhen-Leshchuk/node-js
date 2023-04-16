@@ -18,6 +18,18 @@ class UsersService {
 
     return user;
   }
+
+  updateUser(id, updateParams) {
+    // 1. validate req body +
+    // 2. find user with such id
+    // 3. if not found - throw 404 error
+    // 4. return user
+    const user = userModel.updateById(id, updateParams);
+    if (!user) {
+      throw new NotFound('user not found');
+    }
+    return user;
+  }
 }
 
 exports.usersService = new UsersService();
