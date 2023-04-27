@@ -1,7 +1,6 @@
 {
   "name": "lesson-04",
   "version": "1.0.0",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +12,8 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "short-uuid": "^4.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
