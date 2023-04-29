@@ -1,6 +1,5 @@
-const short = require('short-uuid');
 const express = require('express');
-const router = express.Router();
+const router = new express.Router();
 
 const {
   addPostValidation,
@@ -23,4 +22,6 @@ router.put('/:id', addPostValidation, changePost);
 router.patch('/:id', addPatchValidation, patchPost);
 router.delete('/:id', deletePost);
 
-module.exports = { postsRouter: router };
+module.exports = {
+  postsRouter: router,
+};

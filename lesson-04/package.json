@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "start:dev": "npx nodemon server",
+    "lint": "npx eslint src",
+    "lint:fix": "npx eslint src --fix"
   },
   "keywords": [],
   "author": "Yevhen <evg.leschuk@gmail.com>",
@@ -17,6 +21,8 @@
     "short-uuid": "^4.2.2"
   },
   "devDependencies": {
+    "eslint": "^8.39.0",
+    "eslint-config-google": "^0.14.0",
     "nodemon": "^2.0.22"
   }
 }
