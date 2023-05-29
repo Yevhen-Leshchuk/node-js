@@ -17,5 +17,5 @@ exports.idScheme = Joi.object({
       return helpers.error('Invalid MongoDB ObjectID');
     }
     return value;
-  }),
+  }).required(),
 });

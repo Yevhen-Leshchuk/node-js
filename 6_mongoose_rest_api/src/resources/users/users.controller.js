@@ -27,7 +27,7 @@ router.post(
 // 2. R - Read
 router.get(
   '/',
-  validate(idScheme),
+  validate(idScheme, 'params'),
   catchErrors(async (req, res, next) => {
     const users = await usersService.getUsers();
     res.status(200).send(serializeUsersListResponse(users));
@@ -36,7 +36,7 @@ router.get(
 
 router.get(
   '/:id',
-  validate(idScheme),
+  validate(idScheme, 'params'),
   catchErrors(async (req, res, next) => {
     const user = await usersService.getUser(req.params.id);
     res.status(200).send(serializeUserResponse(user));
@@ -47,7 +47,7 @@ router.get(
 
 router.patch(
   '/:id',
-  validate(idScheme),
+  validate(idScheme, 'params'),
   validate(updateUserSchema),
   catchErrors(async (req, res, next) => {
     const user = await usersService.updateUser(req.params.id, req.body);
@@ -59,7 +59,7 @@ router.patch(
 
 router.delete(
   '/:id',
-  validate(idScheme),
+  validate(idScheme, 'params'),
   catchErrors(async (req, res, next) => {
     await usersService.deleteUser(req.params.id, req.body);
     res.status(204).send();
