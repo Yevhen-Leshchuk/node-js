@@ -1,26 +1,26 @@
+/* eslint-disable object-curly-spacing */
 const express = require('express');
 const router = new express.Router();
 
-const {
-  addPostValidation,
-  addPatchValidation,
-} = require('../middlewares/validationMiddleware');
+const { addPostValidation } = require('../middlewares/validationMiddleware');
+const { asyncWrapper } = require('../helpers/apiHelpers');
+const modelsMiddleware = require('../middlewares/models');
 
 const {
   getPosts,
   getPostById,
   addPost,
   changePost,
-  patchPost,
   deletePost,
 } = require('../controllers/postController');
 
-router.get('/', getPosts);
-router.get('/:id', getPostById);
-router.post('/', addPostValidation, addPost);
-router.put('/:id', addPostValidation, changePost);
-router.patch('/:id', addPatchValidation, patchPost);
-router.delete('/:id', deletePost);
+router.use(modelsMiddleware);
+
+router.get('/', asyncWrapper(getPosts));
+router.get('/:id', asyncWrapper(getPostById));
+router.post('/', addPostValidation, asyncWrapper(addPost));
+router.put('/:id', addPostValidation, asyncWrapper(changePost));
+router.delete('/:id', asyncWrapper(deletePost));
 
 module.exports = {
   postsRouter: router,

@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-spacing */
 const express = require('express');
 const morgan = require('morgan');
 require('dotenv').config();
@@ -11,15 +12,23 @@ app.use(express.json());
 app.use(morgan('tiny')); // morgan middleware (for logs)
 app.use('/api/posts', postsRouter);
 
-const start = async () => {
-  await connectMongo();
+app.use((error, req, res, next) => {
+  res.status(500).json({ message: error.message });
+});
 
-  app.listen(PORT, (err) => {
-    if (err) {
-      console.log('Error at server launch', err);
-    }
-    console.log(`Server work at PORT ${PORT}!`);
-  });
+const start = async () => {
+  try {
+    await connectMongo();
+
+    app.listen(PORT, (err) => {
+      if (err) {
+        console.log('Error at server launch', err);
+      }
+      console.log(`Server work at PORT ${PORT}!`);
+    });
+  } catch (error) {
+    console.error(`Failed to launch application witch error ${error.message}`);
+  }
 };
 
 start();
