@@ -1,5 +1,6 @@
 /* eslint-disable object-curly-spacing */
 const Joi = require('joi');
+const { ValidationError } = require('../helpers/errors');
 
 module.exports = {
   addPostValidation: (req, res, next) => {
@@ -10,7 +11,7 @@ module.exports = {
 
     const validationResult = schema.validate(req.body);
     if (validationResult.error) {
-      return res.status(400).json({ status: validationResult.error.details });
+      next(new ValidationError(validationResult.error.details));
     }
 
     next();
