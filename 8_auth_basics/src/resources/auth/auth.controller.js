@@ -16,4 +16,6 @@ authRouter.post(
   })
 );
 
+authRouter.post('/sign-in', () => {});
+
 exports.authRouter = authRouter;

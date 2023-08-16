@@ -1,4 +1,5 @@
-const { Conflict } = require('http-errors');
+const { Conflict, NotFound, Forbidden } = require('http-errors');
+const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs');
 const { UserModel } = require('../users/users.model');
 const { getConfig } = require('../../config');
@@ -16,9 +17,37 @@ class AuthService {
 
     return user;
   }
+
+  async signIn(loginParams) {
+    const { email, password } = loginParams;
+
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      throw new NotFound('User not found');
+    }
+
+    const isPasswordCorrect = await bcryptjs.compare(
+      password,
+      user.passwordHash
+    );
+    if (!isPasswordCorrect) {
+      throw new Forbidden('Password is wrong');
+    }
+
+    const token = this.createToken(user);
+    return { user, token };
+  }
+
   async hashPassword(password) {
     const { bcryptCostFactor } = getConfig();
     return bcryptjs.hash(password, bcryptCostFactor);
+  }
+
+  createToken(user) {
+    const config = getConfig();
+    return jwt.sign({ uid: user.id }, config.jwt.secret, {
+      expiresIn: config.jwt.expiresIn,
+    });
   }
 }
 
