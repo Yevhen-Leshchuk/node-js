@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { authRouter } = require('./resources/auth/auth.controller');
+const { usersRouter } = require('./resources/users/users.controller');
 
 class UsersServer {
   constructor() {
@@ -42,6 +43,7 @@ class UsersServer {
 
   initRoutes() {
     this.app.use('/api/auth', authRouter);
+    this.app.use('/api/users', usersRouter);
   }
 
   initErrorHandling() {

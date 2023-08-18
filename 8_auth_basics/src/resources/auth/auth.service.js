@@ -45,7 +45,7 @@ class AuthService {
 
   createToken(user) {
     const config = getConfig();
-    return jwt.sign({ uid: user.id }, config.jwt.secret, {
+    return jwt.sign({ uid: user.id, permissions: [] }, config.jwt.secret, {
       expiresIn: config.jwt.expiresIn,
     });
   }
