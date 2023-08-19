@@ -1,7 +1,7 @@
 const { Conflict, NotFound, Forbidden } = require('http-errors');
 const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs');
-const { UserModel } = require('../users/users.model');
+const { UserModel } = require('../users/user.model');
 const { getConfig } = require('../../config');
 
 class AuthService {

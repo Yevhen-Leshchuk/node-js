@@ -1,4 +1,3 @@
-const { required } = require('joi');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
@@ -8,5 +7,6 @@ const userSchema = new Schema({
   passwordHash: { type: String, required: true },
 });
 
+// User => users
 const UserModel = mongoose.model('User', userSchema);
 exports.UserModel = UserModel;

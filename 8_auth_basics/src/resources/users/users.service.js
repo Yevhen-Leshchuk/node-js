@@ -1,9 +1,9 @@
 const { NotFound } = require('http-errors');
-const { UserModel } = require('./users.model');
+const { UserModel } = require('./user.model');
 
-class UserService {
+class UsersService {
   async getCurrentUser(userId) {
-    const user = await UserModel.findById({ userId });
+    const user = await UserModel.findById(userId);
 
     if (!user) {
       throw new NotFound('User not found');
@@ -12,4 +12,4 @@ class UserService {
   }
 }
 
-exports.userService = new UserService();
+exports.usersService = new UsersService();
