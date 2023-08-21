@@ -1,4 +1,6 @@
+/* eslint-disable space-before-function-paren */
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -18,6 +20,12 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+});
+
+userSchema.pre('save', async function () {
+  if (this.isNew) {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
 });
 
 const User = mongoose.model('User', userSchema);
