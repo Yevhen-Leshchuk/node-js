@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(morgan('tiny')); // morgan middleware (for logs)
 app.use('/api/posts', postsRouter);
 app.use('/api/auth', authRouter);
-
 app.use(errorHandler);
 
 const start = async () => {

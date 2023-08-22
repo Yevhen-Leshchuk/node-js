@@ -1,6 +1,6 @@
 /* eslint-disable space-before-function-paren */
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
   email: {
