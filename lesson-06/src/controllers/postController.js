@@ -6,7 +6,7 @@ const {
   addPost,
   changePostById,
   deletePostById,
-} = require('../db/connection');
+} = require('../services/postService');
 
 const getPostsController = async (req, res) => {
   const posts = await getPosts();

@@ -3,8 +3,8 @@
 const { Post } = require('../db/postModel');
 const { WrongParametersError } = require('../helpers/errors');
 
-const getPosts = async () => {
-  const posts = await Post.find({});
+const getPosts = async (userId) => {
+  const posts = await Post.find({ userId });
   return posts;
 };
 
@@ -16,8 +16,8 @@ const getPostById = async (id) => {
   return post;
 };
 
-const addPost = async ({ topic, text }) => {
-  const post = new Post({ topic, text });
+const addPost = async ({ topic, text }, userId) => {
+  const post = new Post({ topic, text, userId });
   await post.save();
 };
 

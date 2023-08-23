@@ -6,10 +6,12 @@ const {
   addPost,
   changePostById,
   deletePostById,
-} = require('../db/connection');
+} = require('../services/postService');
 
 const getPostsController = async (req, res) => {
-  const posts = await getPosts();
+  const { _id } = req.user;
+
+  const posts = await getPosts(_id);
   res.json({ posts });
 };
 
@@ -21,7 +23,9 @@ const getPostByIdController = async (req, res) => {
 
 const addPostController = async (req, res) => {
   const { topic, text } = req.body;
-  await addPost({ topic, text });
+  const { _id } = req.user;
+
+  await addPost({ topic, text }, _id);
   res.json({ status: 'success' });
 };
 
