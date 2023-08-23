@@ -1,18 +1,24 @@
-class ValidationError extends Error {
+class NodeJsError extends Error {
+  constructor(message) {
+    super(message);
+    this.status = 400;
+  }
+}
+class ValidationError extends NodeJsError {
   constructor(message) {
     super(message);
     this.status = 400;
   }
 }
 
-class WrongParametersError extends Error {
+class WrongParametersError extends NodeJsError {
   constructor(message) {
     super(message);
     this.status = 400;
   }
 }
 
-class NotAuthorizedError extends Error {
+class NotAuthorizedError extends NodeJsError {
   constructor(message) {
     super(message);
     this.status = 401;
@@ -20,6 +26,7 @@ class NotAuthorizedError extends Error {
 }
 
 module.exports = {
+  NodeJsError,
   ValidationError,
   WrongParametersError,
   NotAuthorizedError,
