@@ -8,10 +8,12 @@ const getPosts = async (userId) => {
   return posts;
 };
 
-const getPostById = async (id) => {
-  const post = await Post.findById(id);
+const getPostById = async (postId, userId) => {
+  const post = await Post.findOne({ _id: postId, userId });
   if (!post) {
-    throw new WrongParametersError(`failure, no posts with id '${id}' found`);
+    throw new WrongParametersError(
+      `failure, no posts with id '${postId}' found`
+    );
   }
   return post;
 };
@@ -21,12 +23,15 @@ const addPost = async ({ topic, text }, userId) => {
   await post.save();
 };
 
-const changePostById = async (id, { topic, text }) => {
-  await Post.findByIdAndUpdate(id, { $set: { topic, text } });
+const changePostById = async (postId, { topic, text }, userId) => {
+  await Post.findOneAndUpdate(
+    { _id: postId, userId },
+    { $set: { topic, text } }
+  );
 };
 
-const deletePostById = async (id) => {
-  await Post.findByIdAndRemove(id);
+const deletePostById = async (postId, userId) => {
+  await Post.findOneAndRemove({ _id: postId, userId });
 };
 
 module.exports = {
