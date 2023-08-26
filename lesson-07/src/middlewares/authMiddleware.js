@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable spaced-comment */
 /* eslint-disable object-curly-spacing */
 const jwt = require('jsonwebtoken');
@@ -6,7 +7,15 @@ const { NotAuthorizedError } = require('../helpers/errors');
 const authMiddleware = (req, res, next) => {
   try {
     //TODO: validate tape token later (typeToken).
-    const [, token] = req.headers['authorization'].split(' ');
+    const { authorization } = req.headers;
+    if (!authorization) {
+      next(
+        new NotAuthorizedError(
+          'Please provide a token in request authorization header'
+        )
+      );
+    }
+    const [, token] = authorization.split(' ');
 
     if (!token) {
       next(new NotAuthorizedError('Please provide a token'));
