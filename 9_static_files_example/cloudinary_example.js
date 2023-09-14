@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const uuid = require('uuid');
 dotenv.config({ path: path.resolve(__dirname, '.env') });
+const fs = require('fs');
 
 const express = require('express');
 const multer = require('multer');
@@ -26,6 +27,7 @@ app.post('/upload', upload.single('avatar'), async (req, res, next) => {
   const fileUpload = await cloudinary.uploader.upload(req.file.path, {
     access_mode: 'public',
   });
+  await fs.promises.unlink(req.file.path);
 
   res.send();
 });
