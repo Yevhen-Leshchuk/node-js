@@ -1,6 +1,6 @@
 const { Unauthorized, Forbidden } = require('http-errors');
 const jwt = require('jsonwebtoken');
-const { getConfig } = require('./config');
+const { getConfig } = require('../config');
 
 exports.authorize = (...permissions) => {
   return (req, res, next) => {

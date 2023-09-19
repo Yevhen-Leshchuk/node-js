@@ -1,10 +1,10 @@
-const { authorize } = require('./authorize.middleware');
-const config = require('./config');
+const { authorize } = require('./src/middlewares/authorize.middleware');
+const config = require('./src/config');
 const { Unauthorized, Forbidden } = require('http-errors');
 const jwt = require('jsonwebtoken');
 
 const conf = { jwt: { secret: 'secret' } };
-jest.mock('./config', () => ({
+jest.mock('./src/config', () => ({
   getConfig: () => conf,
 }));
 
