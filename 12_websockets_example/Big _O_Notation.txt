@@ -1,0 +1,20 @@
+ complexity of algorithms
+
+ 1. O(n) = 1 - constant;
+ 2. O(n) = ln(n) - logarithmic;
+ 3. O(n) = n - line;
+ 4. O(n) = n^2 - quadratic;
+ 4. O(n) = n^k - degree;
+ 4. O(n) = n! - factorial;
+
+ Example:
+
+ 1. Line cycle:
+    for (let i = 0; i < 10; i++) {
+    
+    };
+
+  2. Quadratic cycle:
+    for (let i = 0; i < 10; i++) {
+      for...
+    };
