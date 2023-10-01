@@ -67,6 +67,28 @@ const registrationConfirmation = async (code) => {
   await sgMail.send(msg);
 };
 
+const forgotPassword = async (email, password) => {
+  const user = await User.findOne({ email, confirmed: true });
+
+  if (!user) {
+    throw new NotAuthorizedError(`No user with email '${email}' found`);
+  }
+
+  const newPassword = sha256(Date.now() + process.env.JWT_SECRET);
+
+  user.password = newPassword;
+  user.save();
+
+  const msg = {
+    to: user.email,
+    from: process.env.NODEMAILER_LOGIN,
+    subject: 'Forgot password',
+    text: `Here is your temporary password: ${newPassword}`,
+    html: `Here is your temporary password: ${newPassword}`,
+  };
+  await sgMail.send(msg);
+};
+
 const login = async (email, password) => {
   const user = await User.findOne({ email, confirmed: true });
 
@@ -92,5 +114,6 @@ const login = async (email, password) => {
 module.exports = {
   registration,
   registrationConfirmation,
+  forgotPassword,
   login,
 };
